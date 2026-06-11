@@ -5,54 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BH770.com</title>
 
-    <!-- Prevent caching -->
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="Mon, 01 Jan 1990 12:00:00 GMT">
 
-    <!-- Open Graph (for Facebook, WhatsApp, LinkedIn, etc.) -->
     <meta property="og:title" content="BH770.com">
-
     <meta property="og:image" content="https://BH770.com/logo.png">
     <meta property="og:url" content="https://BH770.com/">
     <meta property="og:type" content="website">
 
-    <!-- Twitter Card (for Twitter/X) -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="BH770.com">
-
     <meta name="twitter:image" content="https://BH770.com/logo.png">
 
     <style>
-        img.image {
-            position: absolute;
-            max-width: 80%;
-            top: 10%;
-            left: 10%;
-            border-radius: 0px;
+        body {
+            background-color: #FFFFFF;
+            margin: 0;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
         }
 
-        img.image:empty {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .image-link {
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .image-link img {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* Smooth crossfade transition when the image changes */
+            transition: opacity 0.5s ease-in-out; 
         }
 
         @media screen and (orientation: portrait) {
-            img.image {
-                max-width: 100%;
-            }
-            img.image:empty {
-                top: 40%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+            .image-link {
+                width: 90%;
             }
         }
     </style>
 </head>
-<body style="background-color:#FFF;">
-    <a href="https://BH770.com">
-        <img class="image" src="logo.png" alt="BigMitzvah Logo" />
+<body>
+
+    <a class="image-link" href="https://BH770.com">
+        <img src="logo.png" alt="BigMitzvah Logo" />
     </a>
-   
+
+    <a class="image-link" href="https://BH770.com">
+        <img id="rotatingImage" src="image01.png" alt="Slideshow Image" />
+    </a>
+
+    <script>
+        // 1. List your image filenames in order here
+        const images = [
+            "image01.png",
+            "image02.png",
+            "image03.png",
+            "image04.png"            
+        ];
+
+        let currentIndex = 0;
+        const imgElement = document.getElementById("rotatingImage");
+
+        function changeImage() {
+            // Move to the next image index, loop back to 0 if at the end
+            currentIndex = (currentIndex + 1) % images.length;
+            
+            // Briefly fade out, swap the image source, and fade back in
+            imgElement.style.opacity = 0;
+            
+            setTimeout(() => {
+                imgElement.src = images[currentIndex];
+                imgElement.style.opacity = 1;
+            }, 500); // 500ms matches the CSS transition time
+        }
+
+        // 2. Change image every 3000 milliseconds (3 seconds)
+        setInterval(changeImage, 3000);
+    </script>
+
 </body>
 </html>
