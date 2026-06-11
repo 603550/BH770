@@ -18,31 +18,32 @@
     <meta name="twitter:image" content="https://BH770.com/logo.png">
 
     <style>
+        /* Centers everything perfectly from Left to Right */
         body {
             background-color: #FFFFFF;
             margin: 0;
             padding: 40px 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 40px;
+            align-items: center; /* Handles the horizontal centering */
+            gap: 40px; /* Space between each stacked image */
         }
 
+        /* Container to manage image width */
         .image-link {
             display: block;
             width: 80%;
-            max-width: 800px;
-            text-align: center;
+            max-width: 800px; /* Keeps them from getting too wide on desktop */
         }
 
+        /* Makes images responsive and fills the container */
         .image-link img {
             width: 100%;
             height: auto;
             display: block;
-            /* Smooth crossfade transition when the image changes */
-            transition: opacity 0.5s ease-in-out; 
         }
 
+        /* Mobile layout */
         @media screen and (orientation: portrait) {
             .image-link {
                 width: 90%;
@@ -57,37 +58,20 @@
     </a>
 
     <a class="image-link" href="https://BH770.com">
-        <img id="rotatingImage" src="image01.png" alt="Slideshow Image" />
+        <img src="image01.png" alt="Image 1" />
     </a>
 
-    <script>
-        // 1. List your image filenames in order here
-        const images = [
-            "image01.png",
-            "image02.png",
-            "image03.png",
-            "image04.png"            
-        ];
+    <a class="image-link" href="https://BH770.com">
+        <img src="image02.png" alt="Image 2" />
+    </a>
 
-        let currentIndex = 0;
-        const imgElement = document.getElementById("rotatingImage");
+    <a class="image-link" href="https://BH770.com">
+        <img src="image03.png" alt="Image 3" />
+    </a>
 
-        function changeImage() {
-            // Move to the next image index, loop back to 0 if at the end
-            currentIndex = (currentIndex + 1) % images.length;
-            
-            // Briefly fade out, swap the image source, and fade back in
-            imgElement.style.opacity = 0;
-            
-            setTimeout(() => {
-                imgElement.src = images[currentIndex];
-                imgElement.style.opacity = 1;
-            }, 500); // 500ms matches the CSS transition time
-        }
-
-        // 2. Change image every 3000 milliseconds (3 seconds)
-        setInterval(changeImage, 3000);
-    </script>
+    <a class="image-link" href="https://BH770.com">
+        <img src="image04.png" alt="Image 4" />
+    </a>
 
 </body>
 </html>
