@@ -29,54 +29,41 @@
             gap: 40px; /* Space between each stacked image */
         }
 
-        /* Container to manage image width */
+        /* Controls sizing and centering for both the logo div and the standalone images */
         .image-link {
             display: block;
             width: 80%;
             max-width: 800px; /* Keeps them from getting too wide on desktop */
+            height: auto;
         }
 
-        /* Makes images responsive and fills the container */
+        /* Ensures the logo inside the div fills its container properly */
         .image-link img {
             width: 100%;
             height: auto;
             display: block;
         }
 
-        /* Mobile layout */
+        /* Mobile layout optimization */
         @media screen and (orientation: portrait) {
             .image-link {
-                width: 90%;
+                width: 90%; /* Uses more screen real estate on mobile screens */
             }
         }
     </style>
 </head>
 <body>
 
+    <div class="image-link">
+        <img src="logo.png" alt="BigMitzvah Logo" />
+    </div>
 
-    <a class="image-link" href="https://BH770.com">
-        <img src="image01.png" alt="Image 1" />
-    </a>
-
-    <a class="image-link" href="https://BH770.com">
-        <img src="image02.png" alt="Image 2" />
-    </a>
-
-    <a class="image-link" href="https://BH770.com">
-        <img src="image03.png" alt="Image 3" />
-    </a>
-
-    <a class="image-link" href="https://BH770.com">
-        <img src="image04.png" alt="Image 4" />
-    </a>
-
-    <a class="image-link" href="https://BH770.com">
-        <img src="image05.png" alt="Image 4" />
-    </a>
-<br/>
-    <a class="image-link" href="https://BH770.com">
-        <img src="image06.png" alt="Image 4" />
-    </a>
+    <img class="image-link" src="image01.png" alt="Image 1" />
+    <img class="image-link" src="image02.png" alt="Image 2" />
+    <img class="image-link" src="image03.png" alt="Image 3" />
+    <img class="image-link" src="image04.png" alt="Image 4" />
+    <img class="image-link" src="image05.png" alt="Image 5" />
+    <img class="image-link" src="image06.png" alt="Image 6" />
 
 </body>
 </html>
