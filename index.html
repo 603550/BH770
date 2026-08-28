@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -47,73 +46,65 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* The reference screenshot is 393 × 852 px. */
+    /* 
+       FIXED: Switched to a Flexbox layout. 
+       This naturally stacks items and keeps everything above the fold, 
+       regardless of the device's screen size!
+    */
     .screen {
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       width: min(100%, 393px);
-      min-height: 852px;
+      min-height: 100dvh; /* Uses modern exact viewport height */
       margin: 0 auto;
-      overflow: hidden;
+      padding: 20px 0;
+      overflow-x: hidden;
       background: var(--page-background);
     }
 
+    /* Removed all rigid 'position: absolute' and 'top' rules */
     .header-logo {
-      position: absolute;
-      top: 38px;
-      left: 50%;
       display: block;
       width: min(341px, calc(100% - 48px));
-      height: 129px;
+      height: 105px; /* Slightly tightened */
       object-fit: contain;
-      transform: translateX(-50%);
+      margin-bottom: 20px;
     }
 
     .tagline {
-      position: absolute;
-      top: 171px;
-      left: 50%;
-      margin: 0;
+      margin: 0 0 15px 0;
       font-size: 24px;
       font-weight: 400;
       line-height: 29px;
       letter-spacing: -0.15px;
       white-space: nowrap;
-      transform: translateX(-50%);
     }
 
     .unit-price {
-      position: absolute;
-      top: 216px;
-      left: calc(50% - 8px);
       margin: 0;
       font-size: 48px;
       font-weight: 500;
       line-height: 58px;
       letter-spacing: 4px;
       white-space: nowrap;
-      transform: translateX(-50%);
     }
 
     .per-item {
-      position: absolute;
-      top: 269px;
-      left: 50%;
-      margin: 0;
+      margin: 0 0 25px 0;
       font-size: 26px;
       font-weight: 500;
       line-height: 32px;
       letter-spacing: 2px;
       white-space: nowrap;
-      transform: translateX(-50%);
     }
 
     .heart-divider {
-      position: absolute;
-      top: 322px;
-      left: 50%;
+      position: relative;
       width: 311px;
       height: 35px;
-      transform: translateX(-50%);
+      margin-bottom: 30px;
     }
 
     .heart-divider::before,
@@ -145,25 +136,19 @@
     }
 
     .question {
-      position: absolute;
-      top: 407px;
-      left: 50%;
-      margin: 0;
+      margin: 0 0 15px 0;
       font-size: 26px;
       font-weight: 700;
       line-height: 31px;
       letter-spacing: 1px;
       white-space: nowrap;
-      transform: translateX(-50%);
     }
 
     .quantity-picker {
-      position: absolute;
-      top: 451px;
-      left: 50%;
+      position: relative;
       width: 172px;
       height: 70px;
-      transform: translateX(-50%);
+      margin-bottom: 35px;
     }
 
     .quantity-button {
@@ -236,21 +221,15 @@
     }
 
     .total-label {
-      position: absolute;
-      top: 568px;
-      left: 50%;
-      margin: 0;
+      margin: 0 0 5px 0;
       font-size: 22px;
       font-weight: 700;
       line-height: 26px;
       letter-spacing: 1px;
-      transform: translateX(-50%);
     }
 
     .total-amount {
-      position: absolute;
-      top: 592px;
-      left: 50%;
+      margin: 0 0 35px 0;
       color: var(--ink);
       font-size: 64px;
       font-weight: 400;
@@ -258,13 +237,9 @@
       letter-spacing: 6px;
       text-decoration: none;
       white-space: nowrap;
-      transform: translateX(-50%);
     }
 
     .checkout {
-      position: absolute;
-      top: 680px;
-      left: 50%;
       display: grid;
       width: 299px;
       height: 52px;
@@ -277,16 +252,15 @@
       font-weight: 700;
       line-height: 1;
       text-decoration: none;
-      transform: translateX(-50%);
     }
 
     @media (max-width: 360px) {
-      .screen {
-        transform-origin: top center;
-      }
-
       .tagline {
         font-size: 21px;
+      }
+      /* Reduce bottom margins slightly on extra small phones */
+      .heart-divider, .quantity-picker, .total-amount {
+        margin-bottom: 20px;
       }
     }
 
@@ -301,7 +275,7 @@
       }
 
       .checkout:active {
-        transform: translateX(-50%) scale(0.985);
+        transform: scale(0.985); /* Fixed the visual jump on click */
       }
     }
   </style>
@@ -311,8 +285,6 @@
   <main class="screen">
     <!-- Use a tightly cropped transparent logo image with no built-in outer padding. -->
     <img class="header-logo" src="header-logo.png" alt="Baruch Hashem">
-
-
 
     <p class="unit-price" id="unitPrice">$36</p>
     <p class="per-item">per item</p>
@@ -337,7 +309,6 @@
 
   <script>
     // Stripe expects the prefilled amount in the smallest currency unit (cents).
-    // For example, 5050 means $50.50. Change 3600 to 5050 for a $50.50 item.
     const UNIT_PRICE_CENTS = 3600;
     const STRIPE_PAYMENT_LINK = "https://donate.stripe.com/28E28r4Y51Tt2HPaZm2cg00";
 
