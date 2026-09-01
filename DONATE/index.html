@@ -1,10 +1,377 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>BH770.COM DONATE NOW!</title>
-    <meta http-equiv="refresh" content="0; url=https://donate.stripe.com/28E28r4Y51Tt2HPaZm2cg00">
-</head>
-<body>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Baruch Hashem — Mitzvah Tank</title>
+  <meta property="og:title" content="Baruch Hashem — Mitzvah Tank">
+  <meta property="og:description" content="Your Mitzvah Tank is here.">
+  <meta property="og:image" content="social.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="social.png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --page-background: #d6d5cf;
+      --ink: #000;
+      --divider: #858581;
+      --control-background: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      background: var(--page-background);
+    }
+
+    body {
+      color: var(--ink);
+      font-family: "Outfit", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    button,
+    a,
+    output {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 
+       FIXED: Switched to a Flexbox layout. 
+       This naturally stacks items and keeps everything above the fold, 
+       regardless of the device's screen size!
+    */
+    .screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: min(100%, 393px);
+      min-height: 100dvh; /* Uses modern exact viewport height */
+      margin: 0 auto;
+      padding: 20px 0;
+      overflow-x: hidden;
+      background: var(--page-background);
+    }
+
+    /* Removed all rigid 'position: absolute' and 'top' rules */
+    .header-logo {
+      display: block;
+      width: min(341px, calc(100% - 48px));
+      height: 105px; /* Slightly tightened */
+      object-fit: contain;
+      margin-bottom: 20px;
+    }
+
+    .tagline {
+      margin: 0 0 15px 0;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 29px;
+      letter-spacing: -0.15px;
+      white-space: nowrap;
+    }
+
+    .unit-price {
+      margin: 0;
+      font-size: 48px;
+      font-weight: 500;
+      line-height: 58px;
+      letter-spacing: 4px;
+      white-space: nowrap;
+    }
+
+    .per-item {
+      margin: 0 0 25px 0;
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 32px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .heart-divider {
+      position: relative;
+      width: 311px;
+      height: 35px;
+      margin-bottom: 30px;
+    }
+
+    .heart-divider::before,
+    .heart-divider::after {
+      position: absolute;
+      top: 17px;
+      width: 111px;
+      height: 1px;
+      background: var(--divider);
+      content: "";
+    }
+
+    .heart-divider::before {
+      left: 0;
+    }
+
+    .heart-divider::after {
+      right: 0;
+    }
+
+    .heart-logo {
+      position: absolute;
+      top: 0;
+      left: 135px;
+      display: block;
+      width: 37px;
+      height: 35px;
+      object-fit: contain;
+    }
+
+    .question {
+      margin: 0 0 15px 0;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 31px;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .quantity-picker {
+      position: relative;
+      width: 172px;
+      height: 70px;
+      margin-bottom: 35px;
+    }
+
+    .quantity-button {
+      position: absolute;
+      top: 0;
+      width: 30px;
+      height: 70px;
+      padding: 0;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .quantity-button::before,
+    .quantity-button::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: currentColor;
+      content: "";
+      transform: translate(-50%, -50%);
+    }
+
+    .quantity-button::before {
+      width: 24px;
+      height: 6px;
+    }
+
+    .quantity-button.minus {
+      left: 0;
+    }
+
+    .quantity-button.plus {
+      right: 0;
+    }
+
+    .quantity-button.plus::before {
+      width: 30px;
+      height: 6px;
+    }
+
+    .quantity-button.plus::after {
+      width: 6px;
+      height: 32px;
+    }
+
+    .quantity-button:focus-visible,
+    .total-amount:focus-visible,
+    .checkout:focus-visible {
+      outline: 3px solid #000;
+      outline-offset: 4px;
+    }
+
+    .quantity {
+      position: absolute;
+      top: 0;
+      left: 47px;
+      display: grid;
+      width: 70px;
+      height: 70px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      background: var(--control-background);
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .total-label {
+      margin: 0 0 5px 0;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 26px;
+      letter-spacing: 1px;
+    }
+
+    .total-amount {
+      margin: 0 0 35px 0;
+      color: var(--ink);
+      font-size: 42px; /* Reduced from 64px */
+      font-weight: 400;
+      line-height: 1.2; /* Better scaling */
+      letter-spacing: 3px; /* Tighter spacing */
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .checkout {
+      display: grid;
+      width: 299px;
+      height: 52px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      background: var(--control-background);
+      color: var(--ink);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    @media (max-width: 360px) {
+      .tagline {
+        font-size: 21px;
+      }
+      /* Reduce bottom margins slightly on extra small phones */
+      .heart-divider, .quantity-picker, .total-amount {
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .quantity-button,
+      .checkout {
+        transition: opacity 120ms ease, transform 120ms ease;
+      }
+
+      .quantity-button:active {
+        opacity: 0.55;
+      }
+
+      .checkout:active {
+        transform: scale(0.985); /* Fixed the visual jump on click */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="screen">
+    <!-- Use a tightly cropped transparent logo image with no built-in outer padding. -->
+    <img class="header-logo" src="header-logo.png" alt="Baruch Hashem">
+
+    <p class="unit-price" id="unitPrice">$36</p>
+    <p class="per-item">per item</p>
+
+    <div class="heart-divider" aria-hidden="true">
+      <!-- Use a tightly cropped 37 × 35 px heart asset. -->
+      <img class="heart-logo" src="heart-logo.png" alt="">
+    </div>
+
+    <h1 class="question">HOW MANY ITEMS?</h1>
+
+    <div class="quantity-picker" aria-label="Choose quantity">
+      <button class="quantity-button minus" id="decrease" type="button" aria-label="Decrease quantity"></button>
+      <output class="quantity" id="quantity" aria-live="polite">1</output>
+      <button class="quantity-button plus" id="increase" type="button" aria-label="Increase quantity"></button>
+    </div>
+
+    <p class="total-label">TOTAL</p>
+    <a class="total-amount" id="totalAmount" href="#" aria-label="Checkout total: $36.00">$36.00</a>
+    <a class="checkout" id="checkout" href="#">Checkout</a>
+  </main>
+
+  <script>
+    // Stripe expects the prefilled amount in the smallest currency unit (cents).
+    const UNIT_PRICE_CENTS = 3600;
+    const STRIPE_PAYMENT_LINK = "https://donate.stripe.com/4gM8wI2Ii4yof037IR3VC00";
+
+    const quantityOutput = document.querySelector("#quantity");
+    const decreaseButton = document.querySelector("#decrease");
+    const increaseButton = document.querySelector("#increase");
+    const unitPriceText = document.querySelector("#unitPrice");
+    const totalAmountLink = document.querySelector("#totalAmount");
+    const checkoutLink = document.querySelector("#checkout");
+
+    let quantity = 1;
+
+    function formatMoney(cents) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "CAD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(cents / 100);
+    }
+
+    function formatUnitPrice(cents) {
+      return cents % 100 === 0 ? `$${cents / 100}` : formatMoney(cents);
+    }
+
+    function stripeUrl(totalCents) {
+      const url = new URL(STRIPE_PAYMENT_LINK);
+      url.searchParams.set("__prefilled_amount", String(totalCents));
+      return url.toString();
+    }
+
+    function render() {
+      const totalCents = UNIT_PRICE_CENTS * quantity;
+      const formattedTotal = formatMoney(totalCents);
+      const paymentUrl = stripeUrl(totalCents);
+
+      quantityOutput.value = quantity;
+      quantityOutput.textContent = quantity;
+      unitPriceText.textContent = formatUnitPrice(UNIT_PRICE_CENTS);
+      totalAmountLink.textContent = formattedTotal;
+      totalAmountLink.href = paymentUrl;
+      totalAmountLink.setAttribute("aria-label", `Checkout total: ${formattedTotal}`);
+      checkoutLink.href = paymentUrl;
+
+      decreaseButton.disabled = quantity === 1;
+    }
+
+    decreaseButton.addEventListener("click", () => {
+      quantity = Math.max(1, quantity - 1);
+      render();
+    });
+
+    increaseButton.addEventListener("click", () => {
+      quantity += 1;
+      render();
+    });
+
+    render();
+  </script>
 </body>
 </html>
