@@ -16,7 +16,7 @@
 
   <style>
     :root {
-      --page-background: #d6d5ce; /* Slightly adjusted to match the hat background */
+      --page-background: #d6d5ce;
       --ink: #000;
       --divider: #858581;
       --control-background: #fff;
@@ -51,7 +51,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Changed from center alignment to top alignment for scrolling */
     .screen {
       display: flex;
       flex-direction: column;
@@ -68,9 +67,12 @@
     .main-image {
       display: block;
       width: min(341px, calc(100% - 48px));
-      height: auto;
+      /* Set a fixed height so the page doesn't jump during the fade transition */
+      height: 250px; 
       object-fit: contain;
       margin-bottom: 20px;
+      /* Add smooth fade effect */
+      transition: opacity 0.4s ease-in-out; 
     }
 
     .product-title {
@@ -281,8 +283,8 @@
 
 <body>
   <main class="screen">
-    <!-- Main Hat Image (BH04) -->
-    <img class="main-image" src="BH04.png" alt="Baruch Hashem Cap">
+    <!-- Main Hat Image configured with an ID for the slideshow script -->
+    <img class="main-image" id="mainImage" src="BH04.png" alt="Baruch Hashem Cap">
 
     <!-- Title Block -->
     <h1 class="product-title">
@@ -343,6 +345,25 @@
   </main>
 
   <script>
+    // -- Slideshow Logic --
+    const mainImage = document.getElementById("mainImage");
+    const slideshowImages = ["BH04.png", "BH01.png", "BH02.png", "BH03.png"];
+    let slideIndex = 0;
+
+    setInterval(() => {
+      // 1. Fade the image out
+      mainImage.style.opacity = 0; 
+      
+      // 2. Wait for the fade out to finish, then swap the image and fade it back in
+      setTimeout(() => {
+        slideIndex = (slideIndex + 1) % slideshowImages.length;
+        mainImage.src = slideshowImages[slideIndex];
+        mainImage.style.opacity = 1; 
+      }, 400); // 400ms matches the CSS transition time
+    }, 4000); // Rotate every 4 seconds
+
+
+    // -- Pricing & Stripe Logic --
     const UNIT_PRICE_CENTS = 3600;
     const SHIPPING_CENTS = 1400; // Flat $14 shipping fee
     const STRIPE_PAYMENT_LINK = "https://donate.stripe.com/5kQaEQ6Yy9SI8BFfbj3VC01";
