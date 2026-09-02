@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Baruch Hashem — Snapback Varsity Cap</title>
+  <meta property="og:title" content="Baruch Hashem — Snapback Varsity Cap">
+  <meta property="og:description" content="A modern varsity-inspired cap with meaning behind every stitch.">
+  <meta property="og:image" content="BH04.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="BH04.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --page-background: #efefec; /* Slightly adjusted to match the hat background */
+      --ink: #000;
+      --divider: #858581;
+      --control-background: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      background: var(--page-background);
+    }
+
+    body {
+      color: var(--ink);
+      font-family: "Outfit", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    button,
+    a,
+    output {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Changed from center alignment to top alignment for scrolling */
+    .screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: min(100%, 420px);
+      min-height: 100dvh;
+      margin: 0 auto;
+      padding: 40px 0 60px 0;
+      overflow-x: hidden;
+      background: var(--page-background);
+    }
+
+    .main-image {
+      display: block;
+      width: min(341px, calc(100% - 48px));
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 20px;
+    }
+
+    .product-title {
+      margin: 0 0 30px 0;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+    }
+
+    .product-title span {
+      display: block;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .quantity-picker {
+      position: relative;
+      width: 172px;
+      height: 70px;
+      margin-bottom: 35px;
+    }
+
+    .quantity-button {
+      position: absolute;
+      top: 0;
+      width: 30px;
+      height: 70px;
+      padding: 0;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .quantity-button::before,
+    .quantity-button::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: currentColor;
+      content: "";
+      transform: translate(-50%, -50%);
+    }
+
+    .quantity-button::before {
+      width: 24px;
+      height: 4px;
+    }
+
+    .quantity-button.minus {
+      left: 0;
+    }
+
+    .quantity-button.plus {
+      right: 0;
+    }
+
+    .quantity-button.plus::before {
+      width: 26px;
+      height: 4px;
+    }
+
+    .quantity-button.plus::after {
+      width: 4px;
+      height: 26px;
+    }
+
+    .quantity {
+      position: absolute;
+      top: 0;
+      left: 47px;
+      display: grid;
+      width: 70px;
+      height: 70px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      background: var(--control-background);
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .total-label {
+      margin: 0 0 5px 0;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 26px;
+      letter-spacing: 2px;
+    }
+
+    .total-amount {
+      margin: 0 0 5px 0;
+      color: var(--ink);
+      font-size: 48px; 
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 2px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .shipping-note {
+      margin: 0 0 25px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .checkout {
+      display: grid;
+      width: 299px;
+      height: 52px;
+      place-items: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      background: var(--control-background);
+      color: var(--ink);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+
+    .product-info {
+      width: 100%;
+      padding: 0 30px;
+      text-align: left;
+    }
+
+    .product-info h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 25px 0 10px 0;
+    }
+
+    .product-info p {
+      font-size: 16px;
+      line-height: 1.4;
+      font-weight: 400;
+      margin: 0 0 15px 0;
+    }
+
+    .product-info ul {
+      margin: 0 0 25px 0;
+      padding-left: 20px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .charity-note {
+      font-weight: 700 !important;
+      margin-top: 30px !important;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 0 20px;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+
+    .gallery img {
+      width: 30%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .instagram-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 22px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .instagram-footer svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .quantity-button,
+      .checkout {
+        transition: opacity 120ms ease, transform 120ms ease;
+      }
+
+      .quantity-button:active {
+        opacity: 0.55;
+      }
+
+      .checkout:active {
+        transform: scale(0.985);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="screen">
+    <!-- Main Hat Image (BH04) -->
+    <img class="main-image" src="BH04.png" alt="Baruch Hashem Cap">
+
+    <!-- Title Block -->
+    <h1 class="product-title">
+      BARUCH HASHEM<br>
+      <span>Snapback Varsity Cap</span>
+    </h1>
+
+    <!-- Quantity -->
+    <div class="quantity-picker" aria-label="Choose quantity">
+      <button class="quantity-button minus" id="decrease" type="button" aria-label="Decrease quantity"></button>
+      <output class="quantity" id="quantity" aria-live="polite">1</output>
+      <button class="quantity-button plus" id="increase" type="button" aria-label="Increase quantity"></button>
+    </div>
+
+    <!-- Total -->
+    <p class="total-label">TOTAL</p>
+    <a class="total-amount" id="totalAmount" href="#" aria-label="Checkout total"></a>
+    <p class="shipping-note">+ $14.00 flat shipping</p>
+    
+    <a class="checkout" id="checkout" href="#">Checkout</a>
+
+    <!-- Description Block -->
+    <div class="product-info">
+      <h3>Product Description:</h3>
+      <p>A modern varsity-inspired cap with meaning behind every stitch. The BH Two-Tone Snapback features a structured off-white crown, contrasting black brim and bold black puff embroidery across the front. Detailed side embroidery adds a distinctive finishing touch, creating the ultimate IYKYK statement.</p>
+      
+      <p>Wear your BH hat with pride and carry the message of "Baruch Hashem"—"Thank God"—wherever you go. Classic, meaningful and effortlessly wearable, it's designed for those who know. Made from a durable blend of 80% recycled polyester and 20% cotton, the cap is finished with an adjustable snapback closure for a comfortable, personalized fit. Each hat is embroidered in Canada.</p>
+
+      <h3>Product details:</h3>
+      <ul>
+        <li>Trendy two-tone varsity design</li>
+        <li>Structured off-white crown</li>
+        <li>Contrasting black brim</li>
+        <li>Bold black puff embroidery on the front</li>
+        <li>Embroidered side detailing</li>
+        <li>Adjustable snapback closure</li>
+        <li>80% recycled polyester and 20% cotton</li>
+        <li>Embroidered in Canada</li>
+      </ul>
+
+      <p class="charity-note">All funds go directly to Chabad Montreal.</p>
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="gallery">
+      <img src="BH01.png" alt="Hat view 1">
+      <img src="BH02.png" alt="Hat view 2">
+      <img src="BH03.png" alt="Hat view 3">
+    </div>
+
+    <!-- Instagram Footer -->
+    <a href="https://instagram.com/YourMitzvahTank" target="_blank" class="instagram-footer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+        <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+      </svg>
+      @YourMitzvahTank
+    </a>
+  </main>
+
+  <script>
+    const UNIT_PRICE_CENTS = 3600;
+    const SHIPPING_CENTS = 1400; // Flat $14 shipping fee
+    const STRIPE_PAYMENT_LINK = "https://donate.stripe.com/5kQaEQ6Yy9SI8BFfbj3VC01";
+
+    const quantityOutput = document.querySelector("#quantity");
+    const decreaseButton = document.querySelector("#decrease");
+    const increaseButton = document.querySelector("#increase");
+    const totalAmountLink = document.querySelector("#totalAmount");
+    const checkoutLink = document.querySelector("#checkout");
+
+    let quantity = 1;
+
+    function formatMoney(cents) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "CAD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(cents / 100);
+    }
+
+    function stripeUrl(totalCents) {
+      const url = new URL(STRIPE_PAYMENT_LINK);
+      url.searchParams.set("__prefilled_amount", String(totalCents));
+      return url.toString();
+    }
+
+    function render() {
+      // Calculate total: (Price * Quantity) + Shipping
+      const totalCents = (UNIT_PRICE_CENTS * quantity) + SHIPPING_CENTS;
+      const formattedTotal = formatMoney(totalCents);
+      const paymentUrl = stripeUrl(totalCents);
+
+      quantityOutput.value = quantity;
+      quantityOutput.textContent = quantity;
+      
+      totalAmountLink.textContent = formattedTotal;
+      totalAmountLink.href = paymentUrl;
+      totalAmountLink.setAttribute("aria-label", `Checkout total: ${formattedTotal}`);
+      checkoutLink.href = paymentUrl;
+
+      decreaseButton.disabled = quantity === 1;
+    }
+
+    decreaseButton.addEventListener("click", () => {
+      quantity = Math.max(1, quantity - 1);
+      render();
+    });
+
+    increaseButton.addEventListener("click", () => {
+      quantity += 1;
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
