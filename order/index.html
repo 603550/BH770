@@ -308,44 +308,35 @@
         transform: scale(0.985);
       }
     }
-    .delivery-label {
-      margin: 14px 0 8px 0;
-      font-size: 16px;
-      font-weight: 700;
+    .delivery-row {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      margin: 0 0 30px 0;
     }
 
     .delivery-option {
+      flex: 1;
       display: flex;
       align-items: center;
-      gap: 10px;
-      width: 100%;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      border: 1.5px solid var(--ink);
-      border-radius: 8px;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border: 1px solid #c9c9c4;
+      border-radius: 999px;
       background: #fff;
       cursor: pointer;
-      font-size: 16px;
-      text-align: left;
+      font-size: 13px;
+      font-weight: 500;
+      color: #555;
+      white-space: nowrap;
     }
 
     .delivery-option input {
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
       margin: 0;
       accent-color: #000;
-    }
-
-    .delivery-text strong {
-      display: block;
-      font-weight: 700;
-    }
-
-    .delivery-text small {
-      display: block;
-      font-size: 13px;
-      color: #555;
-      margin-top: 2px;
     }
   </style>
 </head>
@@ -367,27 +358,20 @@
 
     <p class="breakdown-text" id="subtotalText">Subtotal: CA$36.00</p>
 
-    <p class="delivery-label">Delivery</p>
-
-    <label class="delivery-option">
-      <input type="radio" name="delivery" id="shipRadio" checked>
-      <span class="delivery-text">
-        <strong>Xpresspost Shipping</strong>
-        <small>+CA$14.00</small>
-      </span>
-    </label>
-
-    <label class="delivery-option">
-      <input type="radio" name="delivery" id="pickupRadio">
-      <span class="delivery-text">
-        <strong>Pickup at Chabad NDG</strong>
-        <small>Free</small>
-      </span>
-    </label>
-    
     <p class="total-label">TOTAL</p>
     <span class="total-amount" id="totalAmount">CA$50.00</span>
-    
+
+    <div class="delivery-row">
+      <label class="delivery-option">
+        <input type="radio" name="delivery" id="shipRadio" checked>
+        <span>Ship +$14</span>
+      </label>
+      <label class="delivery-option">
+        <input type="radio" name="delivery" id="pickupRadio">
+        <span>Pickup · free</span>
+      </label>
+    </div>
+
     <a class="checkout" id="checkout" href="#">Checkout</a>
 
     <div class="product-info">
