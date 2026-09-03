@@ -48,6 +48,7 @@
             width: 80%;
             max-width: 1000px;
             height: auto;
+            aspect-ratio: 1148 / 1370; /* matches logo.png's real dimensions — reserves space so nothing shifts on load */
             margin: 0 auto;
             border-radius: 0px;
             display: inline-block;
@@ -93,7 +94,7 @@
 <body>
     
     <a href="https://BH770.com/order" class="main-link">
-        <img class="image" src="https://BH770.com/logo.png" alt="BH770.COM" />
+        <img class="image" src="https://BH770.com/logo.png" alt="BH770.COM" width="1148" height="1370" />
     </a>
 
     <div class="social-container">
@@ -111,13 +112,5 @@
             WhatsApp
         </a>
     </div>
-<script>
-    // Prevent the browser from remembering scroll position
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-    // Force the page to start at the absolute top
-    window.scrollTo(0, 0);
-  </script>
 </body>
 </html>
