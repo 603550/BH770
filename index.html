@@ -27,17 +27,17 @@
         body {
             background-color: #DFDDDB;
             margin: 0;
-            padding: 40px 0; /* Added padding to give it breathing room at the top */
+            padding: 30px 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Changed from center to flex-start to push content up */
+            justify-content: flex-start;
             font-family: "Outfit", sans-serif;
             -webkit-font-smoothing: antialiased;
+            text-rendering: geometricPrecision;
         }
 
-        /* Forces the link wrapper to span the full width to keep its contents perfectly centered */
         .main-link {
             width: 100%;
             display: block;
@@ -48,7 +48,7 @@
             width: 80%;
             max-width: 1000px;
             height: auto;
-            aspect-ratio: 1148 / 1370; /* matches logo.png's real dimensions — reserves space so nothing shifts on load */
+            aspect-ratio: 1148 / 1370; /* Reserves intrinsic proportions to stop layout shift */
             margin: 0 auto;
             border-radius: 0px;
             display: inline-block;
@@ -57,10 +57,10 @@
         .social-container {
             display: flex;
             gap: 30px;
-            margin-top: 40px; 
-            margin-bottom: 40px;
+            margin-top: 30px; 
+            margin-bottom: 30px;
             justify-content: center;
-            flex-wrap: wrap; /* Allows them to stack on very small screens if needed */
+            flex-wrap: wrap;
         }
 
         .social-link {
@@ -112,5 +112,18 @@
             WhatsApp
         </a>
     </div>
+
+    <script>
+        // Forces page to stay fixed at top on load
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        function forceTop() {
+            window.scrollTo(0, 0);
+        }
+        forceTop();
+        window.addEventListener('load', forceTop);
+        document.addEventListener('DOMContentLoaded', forceTop);
+    </script>
 </body>
 </html>
