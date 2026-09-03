@@ -24,9 +24,15 @@
 
     * {
       box-sizing: border-box;
+      overflow-anchor: none; /* Disables browser auto-scroll anchoring on font/image load */
     }
 
-    html, body {
+    html {
+      overflow-anchor: none;
+      background: var(--page-background);
+    }
+
+    body {
       margin: 0;
       padding: 0;
       background: var(--page-background);
@@ -357,17 +363,6 @@
   </main>
 
   <script>
-    // Strict scroll restoration override for Mobile Safari
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-    function forceTop() {
-      window.scrollTo(0, 0);
-    }
-    forceTop();
-    window.addEventListener('load', forceTop);
-    setTimeout(forceTop, 50);
-
     // Rotating Image Slideshow Logic
     const mainImg = document.getElementById("mainImage");
     const slides = ["BH04.png", "BH01.png", "BH02.png", "BH03.png"];
@@ -386,7 +381,7 @@
 
     // Dynamic Price & Stripe Logic
     const UNIT_PRICE_CENTS = 3600;
-    const SHIPPING_CENTS = 1300; // Flat CA$13.00
+    const SHIPPING_CENTS = 1300; 
     const STRIPE_PAYMENT_LINK = "https://donate.stripe.com/5kQaEQ6Yy9SI8BFfbj3VC01";
 
     const quantityOutput = document.querySelector("#quantity");
