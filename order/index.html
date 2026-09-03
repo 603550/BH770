@@ -1,445 +1,138 @@
-<!doctype html>
+<!--- Main Landing Page: index.html --->
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Baruch Hashem — Snapback Varsity Cap</title>
-  <meta property="og:title" content="Baruch Hashem — Snapback Varsity Cap">
-  <meta property="og:description" content="A modern varsity-inspired cap with meaning behind every stitch.">
-  <meta property="og:image" content="BH04.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="BH04.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baruch Hashem — Mitzvah Tank</title>
+    <meta property="og:title" content="Baruch Hashem — Mitzvah Tank">
+    <meta property="og:description" content="Your Mitzvah Tank is here">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Mon, 01 Jan 1990 12:00:00 GMT">
 
-  <style>
-    :root {
-      --page-background: #EBEBE8;
-      --ink: #000;
-      --divider: #858581;
-      --control-background: #fff;
-    }
+    <meta property="og:title" content="BH770.COM">
+    <meta property="og:image" content="https://BH770.com/logo.jpeg">
+    <meta property="og:url" content="https://BH770.com/">
+    <meta property="og:type" content="website">
 
-    * {
-      box-sizing: border-box;
-      overflow-anchor: none; /* Disables browser auto-scroll anchoring on font/image load */
-    }
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BH770.COM">
+    <meta name="twitter:image" content="https://bh770.com/logo.jpeg">
 
-    html {
-      overflow-anchor: none;
-      background: var(--page-background);
-    }
+    <link rel="preload" href="fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-    body {
-      margin: 0;
-      padding: 0;
-      background: var(--page-background);
-      color: var(--ink);
-      font-family: "Outfit", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: geometricPrecision;
-    }
+    <style>
+        @font-face {
+            font-family: "Outfit";
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url("fonts/outfit-latin.woff2") format("woff2");
+        }
 
-    button,
-    a,
-    output {
-      font: inherit;
-    }
+        @font-face {
+            font-family: "Outfit-Fallback";
+            font-style: normal;
+            font-weight: 100 900;
+            src: local("Arial"), local("Helvetica Neue"), local("Helvetica"), local("Segoe UI"), local("Roboto");
+            ascent-override: 100%;
+            descent-override: 26%;
+            line-gap-override: 0%;
+        }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
+        html {
+            overflow-anchor: none;
+            background-color: #DFDDDB;
+        }
 
-    .screen {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      width: min(100%, 420px);
-      margin: 0 auto;
-      padding: 20px 0 40px 0;
-      overflow-x: hidden;
-      background: var(--page-background);
-    }
+        body {
+            background-color: #DFDDDB;
+            margin: 0;
+            padding: 30px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            font-family: "Outfit", "Outfit-Fallback", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: geometricPrecision;
+        }
 
-    .main-image {
-      display: block;
-      width: min(100%, 370px);
-      height: 210px; 
-      object-fit: contain;
-      margin-bottom: 12px;
-      transition: opacity 0.4s ease-in-out; 
-    }
+        .main-link {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
 
-    .product-title {
-      margin: 0 0 25px 0;
-      text-align: center;
-      font-size: 24px;
-      font-weight: 900;
-      line-height: 1.2;
-      letter-spacing: 0.5px;
-    }
+        img.image {
+            width: 80%;
+            max-width: 1000px;
+            height: auto;
+            aspect-ratio: 1148 / 1370;
+            margin: 0 auto;
+            border-radius: 0px;
+            display: inline-block;
+        }
 
-    .product-title span {
-      display: block;
-      font-size: 20px;
-      font-weight: 700;
-    }
+        .social-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px; 
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-    .quantity-picker {
-      position: relative;
-      width: 172px;
-      height: 70px;
-      margin-bottom: 30px;
-    }
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: 500;
+            text-decoration: none;
+            color: #333;
+            transition: opacity 0.2s ease;
+        }
 
-    .quantity-button {
-      position: absolute;
-      top: 0;
-      width: 30px;
-      height: 70px;
-      padding: 0;
-      border: 0;
-      border-radius: 4px;
-      background: transparent;
-      color: var(--ink);
-      cursor: pointer;
-    }
+        .social-link:active {
+            opacity: 0.6;
+        }
 
-    .quantity-button::before,
-    .quantity-button::after {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      background: currentColor;
-      content: "";
-      transform: translate(-50%, -50%);
-    }
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
+        }
 
-    .quantity-button::before {
-      width: 24px;
-      height: 4px;
-    }
-
-    .quantity-button.minus {
-      left: 0;
-    }
-
-    .quantity-button.plus {
-      right: 0;
-    }
-
-    .quantity-button.plus::before {
-      width: 26px;
-      height: 4px;
-    }
-
-    .quantity-button.plus::after {
-      width: 4px;
-      height: 26px;
-    }
-
-    .quantity {
-      position: absolute;
-      top: 0;
-      left: 47px;
-      display: grid;
-      width: 70px;
-      height: 70px;
-      place-items: center;
-      border: 1.5px solid var(--ink);
-      border-radius: 8px;
-      background: var(--control-background);
-      font-size: 28px;
-      font-weight: 400;
-      line-height: 1;
-    }
-
-    .breakdown-text {
-      margin: 0 0 2px 0;
-      font-size: 18px;
-      font-weight: 500;
-      color: #333;
-    }
-
-    .total-label {
-      margin: 10px 0 5px 0;
-      font-size: 20px;
-      font-weight: 800;
-      line-height: 26px;
-      letter-spacing: 2px;
-    }
-
-    .total-amount {
-      margin: 0 0 35px 0;
-      color: var(--ink);
-      font-size: 48px; 
-      font-weight: 500;
-      line-height: 1.2;
-      letter-spacing: 2px;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .checkout {
-      display: grid;
-      width: 299px;
-      height: 52px;
-      place-items: center;
-      border: 1.5px solid var(--ink);
-      border-radius: 8px;
-      background: var(--control-background);
-      color: var(--ink);
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1;
-      text-decoration: none;
-      margin-bottom: 40px;
-    }
-
-    .product-info {
-      width: 100%;
-      padding: 0 30px;
-      text-align: left;
-    }
-
-    .product-info h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin: 10px 0 10px 0;
-    }
-
-    .product-info p {
-      font-size: 16px;
-      line-height: 1.4;
-      font-weight: 400;
-      margin: 0 0 15px 0;
-    }
-
-    .product-info ul {
-      margin: 0 0 25px 0;
-      padding-left: 20px;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .charity-note {
-      font-weight: 700 !important;
-      margin-top: 30px !important;
-    }
-
-    .gallery {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 0 20px;
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
-
-    .gallery img {
-      width: 30%;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .social-container {
-      display: flex;
-      gap: 30px;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .social-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 20px;
-      font-weight: 500;
-      text-decoration: none;
-      color: #333;
-      transition: opacity 0.2s ease;
-    }
-
-    .social-link:active {
-      opacity: 0.6;
-    }
-
-    .social-icon {
-      width: 30px;
-      height: 30px;
-      fill: currentColor;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .quantity-button,
-      .checkout {
-        transition: opacity 120ms ease, transform 120ms ease;
-      }
-
-      .quantity-button:active {
-        opacity: 0.55;
-      }
-
-      .checkout:active {
-        transform: scale(0.985);
-      }
-    }
-  </style>
+        @media screen and (orientation: portrait) {
+            img.image {
+                width: 90%; 
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <main class="screen">
-    <img class="main-image" id="mainImage" src="BH04.png" alt="Baruch Hashem Cap">
-
-    <h1 class="product-title">
-      BARUCH HASHEM<br>
-      <span>Snapback Varsity Cap</span>
-    </h1>
-
-    <div class="quantity-picker" aria-label="Choose quantity">
-      <button class="quantity-button minus" id="decrease" type="button" aria-label="Decrease quantity"></button>
-      <output class="quantity" id="quantity">1</output>
-      <button class="quantity-button plus" id="increase" type="button" aria-label="Increase quantity"></button>
-    </div>
-
-    <p class="breakdown-text" id="subtotalText">Subtotal: CA$36.00</p>
-    <p class="breakdown-text">Shipping: CA$13.00</p>
     
-    <p class="total-label">TOTAL</p>
-    <a class="total-amount" id="totalAmount" href="#" aria-label="Checkout total">CA$49.00</a>
-    
-    <a class="checkout" id="checkout" href="#">Checkout</a>
-
-    <div class="product-info">
-      <h3>Product Description:</h3>
-      <p>A modern varsity-inspired cap with meaning behind every stitch. The BH Two-Tone Snapback features a structured off-white crown, contrasting black brim and bold black puff embroidery across the front. Detailed side embroidery adds a distinctive finishing touch, creating the ultimate IYKYK statement.</p>
-      
-      <p>Wear your BH hat with pride and carry the message of "Baruch Hashem"—"Bless G-d"—wherever you go. Classic, meaningful and effortlessly wearable, it's designed for those who know. Made from a durable blend of 80% recycled polyester and 20% cotton, the cap is finished with an adjustable snapback closure for a comfortable, personalized fit. Each hat is embroidered in Canada.</p>
-
-      <h3>Product details:</h3>
-      <ul>
-        <li>Trendy two-tone varsity design</li>
-        <li>Structured off-white crown</li>
-        <li>Contrasting black brim</li>
-        <li>Bold black puff embroidery on the front</li>
-        <li>Embroidered side detailing</li>
-        <li>Adjustable snapback closure</li>
-        <li>80% recycled polyester and 20% cotton</li>
-        <li>Embroidered in Canada</li>
-      </ul>
-
-      <p class="charity-note">All funds go directly to Rohr Chabad NDG.</p>
-    </div>
-
-    <div class="gallery">
-      <img src="BH01.png" alt="Hat view 1">
-      <img src="BH02.png" alt="Hat view 2">
-      <img src="BH03.png" alt="Hat view 3">
-    </div>
+    <a href="https://BH770.com/order" class="main-link">
+        <img class="image" src="https://BH770.com/logo.png" alt="BH770.COM" width="1148" height="1370" />
+    </a>
 
     <div class="social-container">
-      <a href="https://instagram.com/yourmitzvahtank" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
-        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-        </svg>
-        Instagram
-      </a>
+        <a href="https://instagram.com/yourmitzvahtank" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            Instagram
+        </a>
 
-      <a href="https://wa.me/18584624770" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us">
-        <svg class="social-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-          <path d="M26.576 5.363c-2.69-2.69-6.406-4.354-10.511-4.354-8.209 0-14.865 6.655-14.865 14.865 0 2.732 0.737 5.291 2.022 7.491l-0.038-0.070-2.109 7.702 7.879-2.067c2.051 1.139 4.498 1.809 7.102 1.809h0.006c8.209-0.003 14.862-6.659 14.862-14.868 0-4.103-1.662-7.817-4.349-10.507l0 0zM16.062 28.228h-0.005c-0 0-0.001 0-0.001 0-2.319 0-4.489-0.64-6.342-1.753l0.056 0.031-0.451-0.267-4.675 1.227 1.247-4.559-0.294-0.467c-1.185-1.862-1.889-4.131-1.889-6.565 0-6.822 5.531-12.353 12.353-12.353s12.353 5.531 12.353 12.353c0 6.822-5.53 12.353-12.353 12.353h-0zM22.838 18.977c-0.371-0.186-2.197-1.083-2.537-1.208-0.341-0.124-0.589-0.185-0.837 0.187-0.246 0.371-0.958 1.207-1.175 1.455-0.216 0.249-0.434 0.279-0.805 0.094-1.15-0.466-2.138-1.087-2.997-1.852l0.010 0.009c-0.799-0.74-1.484-1.587-2.037-2.521l-0.028-0.052c-0.216-0.371-0.023-0.572 0.162-0.757 0.167-0.166 0.372-0.434 0.557-0.65 0.146-0.179 0.271-0.384 0.366-0.604l0.006-0.017c0.043-0.087 0.068-0.188 0.068-0.296 0-0.131-0.037-0.253-0.101-0.357l0.002 0.003c-0.094-0.186-0.836-2.014-1.145-2.758-0.302-0.724-0.609-0.625-0.836-0.637-0.216-0.010-0.464-0.012-0.712-0.012-0.395 0.010-0.746 0.188-0.988 0.463l-0.001 0.002c-0.802 0.761-1.3 1.834-1.3 3.023 0 0.026 0 0.053 0.001 0.079l-0-0.004c0.131 1.467 0.681 2.784 1.527 3.857l-0.012-0.015c1.604 2.379 3.742 4.282 6.251 5.564l0.094 0.043c0.548 0.248 1.25 0.513 1.968 0.74l0.149 0.041c0.442 0.14 0.951 0.221 1.479 0.221 0.303 0 0.601-0.027 0.889-0.078l-0.031 0.004c1.069-0.223 1.956-0.868 2.497-1.749l0.009-0.017c0.165-0.366 0.261-0.793 0.261-1.242 0-0.185-0.016-0.366-0.047-0.542l0.003 0.019c-0.092-0.155-0.34-0.247-0.712-0.434z"></path>
-        </svg>
-        WhatsApp
-      </a>
+        <a href="https://wa.me/18584624770" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us">
+            <svg class="social-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M26.576 5.363c-2.69-2.69-6.406-4.354-10.511-4.354-8.209 0-14.865 6.655-14.865 14.865 0 2.732 0.737 5.291 2.022 7.491l-0.038-0.070-2.109 7.702 7.879-2.067c2.051 1.139 4.498 1.809 7.102 1.809h0.006c8.209-0.003 14.862-6.659 14.862-14.868 0-4.103-1.662-7.817-4.349-10.507l0 0zM16.062 28.228h-0.005c-0 0-0.001 0-0.001 0-2.319 0-4.489-0.64-6.342-1.753l0.056 0.031-0.451-0.267-4.675 1.227 1.247-4.559-0.294-0.467c-1.185-1.862-1.889-4.131-1.889-6.565 0-6.822 5.531-12.353 12.353-12.353s12.353 5.531 12.353 12.353c0 6.822-5.53 12.353-12.353 12.353h-0zM22.838 18.977c-0.371-0.186-2.197-1.083-2.537-1.208-0.341-0.124-0.589-0.185-0.837 0.187-0.246 0.371-0.958 1.207-1.175 1.455-0.216 0.249-0.434 0.279-0.805 0.094-1.15-0.466-2.138-1.087-2.997-1.852l0.010 0.009c-0.799-0.74-1.484-1.587-2.037-2.521l-0.028-0.052c-0.216-0.371-0.023-0.572 0.162-0.757 0.167-0.166 0.372-0.434 0.557-0.65 0.146-0.179 0.271-0.384 0.366-0.604l0.006-0.017c0.043-0.087 0.068-0.188 0.068-0.296 0-0.131-0.037-0.253-0.101-0.357l0.002 0.003c-0.094-0.186-0.836-2.014-1.145-2.758-0.302-0.724-0.609-0.625-0.836-0.637-0.216-0.010-0.464-0.012-0.712-0.012-0.395 0.010-0.746 0.188-0.988 0.463l-0.001 0.002c-0.802 0.761-1.3 1.834-1.3 3.023 0 0.026 0 0.053 0.001 0.079l-0-0.004c0.131 1.467 0.681 2.784 1.527 3.857l-0.012-0.015c1.604 2.379 3.742 4.282 6.251 5.564l0.094 0.043c0.548 0.248 1.25 0.513 1.968 0.74l0.149 0.041c0.442 0.14 0.951 0.221 1.479 0.221 0.303 0 0.601-0.027 0.889-0.078l-0.031 0.004c1.069-0.223 1.956-0.868 2.497-1.749l0.009-0.017c0.165-0.366 0.261-0.793 0.261-1.242 0-0.185-0.016-0.366-0.047-0.542l0.003 0.019c-0.092-0.155-0.34-0.247-0.712-0.434z"></path>
+            </svg>
+            WhatsApp
+        </a>
     </div>
-  </main>
-
-  <script>
-    // Rotating Image Slideshow Logic
-    const mainImg = document.getElementById("mainImage");
-    const slides = ["BH04.png", "BH01.png", "BH02.png", "BH03.png"];
-    let slideIdx = 0;
-
-    if (mainImg) {
-      setInterval(() => {
-        mainImg.style.opacity = "0"; 
-        setTimeout(() => {
-          slideIdx = (slideIdx + 1) % slides.length;
-          mainImg.src = slides[slideIdx];
-          mainImg.style.opacity = "1"; 
-        }, 400); 
-      }, 4000); 
-    }
-
-    // Dynamic Price & Stripe Logic
-    const UNIT_PRICE_CENTS = 3600;
-    const SHIPPING_CENTS = 1300; 
-    const STRIPE_PAYMENT_LINK = "https://donate.stripe.com/5kQaEQ6Yy9SI8BFfbj3VC01";
-
-    const quantityOutput = document.querySelector("#quantity");
-    const decreaseButton = document.querySelector("#decrease");
-    const increaseButton = document.querySelector("#increase");
-    const subtotalText = document.querySelector("#subtotalText");
-    const totalAmountLink = document.querySelector("#totalAmount");
-    const checkoutLink = document.querySelector("#checkout");
-
-    let quantity = 1;
-
-    function formatMoney(cents) {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "CAD",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).format(cents / 100);
-    }
-
-    function stripeUrl(totalCents) {
-      const url = new URL(STRIPE_PAYMENT_LINK);
-      url.searchParams.set("__prefilled_amount", String(totalCents));
-      return url.toString();
-    }
-
-    function render() {
-      const subtotalCents = UNIT_PRICE_CENTS * quantity;
-      const totalCents = subtotalCents + SHIPPING_CENTS;
-      
-      const formattedSubtotal = formatMoney(subtotalCents);
-      const formattedTotal = formatMoney(totalCents);
-      const paymentUrl = stripeUrl(totalCents);
-
-      quantityOutput.value = quantity;
-      quantityOutput.textContent = quantity;
-      
-      subtotalText.textContent = `Subtotal: ${formattedSubtotal}`;
-      
-      totalAmountLink.textContent = formattedTotal;
-      totalAmountLink.href = paymentUrl;
-      totalAmountLink.setAttribute("aria-label", `Checkout total: ${formattedTotal}`);
-      checkoutLink.href = paymentUrl;
-
-      decreaseButton.disabled = quantity === 1;
-    }
-
-    decreaseButton.addEventListener("click", () => {
-      quantity = Math.max(1, quantity - 1);
-      render();
-    });
-
-    increaseButton.addEventListener("click", () => {
-      quantity += 1;
-      render();
-    });
-
-    render();
-  </script>
 </body>
 </html>
