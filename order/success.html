@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Thank You — Baruch Hashem</title>
+
+  <link rel="preload" href="fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <style>
+    @font-face {
+      font-family: "Outfit";
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("fonts/outfit-latin.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Outfit-Fallback";
+      font-style: normal;
+      font-weight: 100 900;
+      src: local("Arial"), local("Helvetica Neue"), local("Helvetica"), local("Segoe UI"), local("Roboto");
+      ascent-override: 100%;
+      descent-override: 26%;
+      line-gap-override: 0%;
+    }
+
+    :root {
+      --page-background: #EBEBE8;
+      --ink: #000;
+      --control-background: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+      overflow-anchor: none;
+    }
+
+    html {
+      overflow-anchor: none;
+      background: var(--page-background);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--page-background);
+      color: var(--ink);
+      font-family: "Outfit", "Outfit-Fallback", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    a {
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: min(100%, 420px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 48px 24px 48px 24px;
+      overflow-x: hidden;
+      background: var(--page-background);
+    }
+
+    .brand {
+      margin: 0 0 42px 0;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .check {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 26px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .title {
+      margin: 0 0 12px 0;
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .subtitle {
+      margin: 0 0 28px 0;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.4;
+      text-align: center;
+      color: #333;
+    }
+
+    .address-card {
+      display: block;
+      width: 100%;
+      margin-bottom: 24px;
+      padding: 16px 18px;
+      border: 1.5px solid var(--ink);
+      border-radius: 10px;
+      background: var(--control-background);
+      color: var(--ink);
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .address-card:active {
+      background: #f2f2ef;
+    }
+
+    .address-line1 {
+      display: block;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .address-line2 {
+      display: block;
+      margin-top: 2px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .address-hint {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: #858581;
+    }
+
+    .note {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #c9c9c4;
+      border-radius: 10px;
+      background: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      text-align: center;
+      color: #333;
+    }
+
+    .note strong {
+      font-weight: 700;
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+  <main class="screen">
+    <p class="brand">BARUCH HASHEM</p>
+
+    <div class="check" aria-hidden="true">✓</div>
+
+    <h1 class="title">Thank you for your purchase.</h1>
+    <p class="subtitle">You can pick up your hat at:</p>
+
+    <a class="address-card"
+       href="https://www.google.com/maps/dir//2248+Avenue+Clifton,+Montreal,+QC+H4A+2N6/@45.4679078,-73.6167649,1078m/data=!3m1!1e3!4m18!1m8!3m7!1s0x4cc910b6e429be67:0xf2fb591653400152!2s2248+Avenue+Clifton,+Montreal,+QC+H4A+2N6!3b1!8m2!3d45.4679078!4d-73.6167649!16s%2Fg%2F11c15lkx31!4m8!1m0!1m5!1m1!1s0x4cc910b6e429be67:0xf2fb591653400152!2m2!1d-73.6167649!2d45.4679078!3e2?entry=ttu&amp;g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D"
+       target="_blank" rel="noopener noreferrer">
+      <span class="address-line1">2248 Avenue Clifton</span>
+      <span class="address-line2">Montreal, QC H4A 2N6</span>
+      <span class="address-hint">Tap for directions</span>
+    </a>
+
+    <p class="note"><strong>Note:</strong> Hats are currently being embroidered and will be ready by <strong>Wednesday, Sep 9</strong>.</p>
+  </main>
+</body>
+</html>
