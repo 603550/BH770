@@ -477,6 +477,10 @@
       }).format(cents / 100);
     }
 
+    function subtotalCents() {
+      return UNIT_PRICE_CENTS * quantity;
+    }
+
     function selectedTotalCents() {
       const base = subtotalCents();
       return shipRadio.checked ? base + SHIPPING_CENTS : base;
