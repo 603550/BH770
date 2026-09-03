@@ -308,35 +308,40 @@
         transform: scale(0.985);
       }
     }
-    .delivery-row {
+    .delivery-options {
       display: flex;
+      flex-direction: column;
       gap: 8px;
       width: 100%;
       margin: 0 0 30px 0;
     }
 
     .delivery-option {
-      flex: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 10px;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 14px;
       border: 1px solid #c9c9c4;
-      border-radius: 999px;
+      border-radius: 8px;
       background: #fff;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       color: #555;
-      white-space: nowrap;
     }
 
     .delivery-option input {
-      width: 14px;
-      height: 14px;
+      width: 15px;
+      height: 15px;
       margin: 0;
       accent-color: #000;
+    }
+
+    .checkout.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+      cursor: not-allowed;
     }
   </style>
 </head>
@@ -359,11 +364,11 @@
     <p class="breakdown-text" id="subtotalText">Subtotal: CA$36.00</p>
 
     <p class="total-label">TOTAL</p>
-    <span class="total-amount" id="totalAmount">CA$50.00</span>
+    <span class="total-amount" id="totalAmount">CA$36.00</span>
 
-    <div class="delivery-row">
+    <div class="delivery-options">
       <label class="delivery-option">
-        <input type="radio" name="delivery" id="shipRadio" checked>
+        <input type="radio" name="delivery" id="shipRadio">
         <span>Ship +$14</span>
       </label>
       <label class="delivery-option">
@@ -481,6 +486,9 @@
       totalAmount.textContent = formatMoney(selectedTotalCents());
 
       decreaseButton.disabled = quantity === 1;
+
+      const hasDelivery = shipRadio.checked || pickupRadio.checked;
+      checkoutLink.classList.toggle("disabled", !hasDelivery);
     }
 
     decreaseButton.addEventListener("click", () => {
@@ -498,8 +506,11 @@
 
     checkoutLink.addEventListener("click", (event) => {
       event.preventDefault();
+      if (!shipRadio.checked && !pickupRadio.checked) return;
       const link = shipRadio.checked ? SHIP_PAYMENT_LINK : PICKUP_PAYMENT_LINK;
-      window.location.href = link;
+      const url = new URL(link);
+      url.searchParams.set("__prefilled_amount", String(selectedTotalCents()));
+      window.location.href = url.toString();
     });
 
     render();
