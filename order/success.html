@@ -118,6 +118,13 @@
       background: #f2f2ef;
     }
 
+    .pin {
+      display: block;
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 10px auto;
+    }
+
     .address-line1 {
       display: block;
       font-size: 17px;
@@ -212,8 +219,12 @@
     <p class="subtitle">You can pick up your hat at:</p>
 
     <a class="address-card"
-       href="https://www.google.com/maps/dir//2248+Avenue+Clifton,+Montreal,+QC+H4A+2N6/@45.4679078,-73.6167649,1078m/data=!3m1!1e3!4m18!1m8!3m7!1s0x4cc910b6e429be67:0xf2fb591653400152!2s2248+Avenue+Clifton,+Montreal,+QC+H4A+2N6!3b1!8m2!3d45.4679078!4d-73.6167649!16s%2Fg%2F11c15lkx31!4m8!1m0!1m5!1m1!1s0x4cc910b6e429be67:0xf2fb591653400152!2m2!1d-73.6167649!2d45.4679078!3e2?entry=ttu&amp;g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D"
+       href="https://www.google.com/maps/dir/?api=1&amp;destination=2248+Avenue+Clifton,+Montreal,+QC+H4A+2N6"
        target="_blank" rel="noopener noreferrer">
+      <svg class="pin" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#EA4335"/>
+        <circle cx="12" cy="9" r="2.5" fill="#fff"/>
+      </svg>
       <span class="address-line1">2248 Avenue Clifton</span>
       <span class="address-line2">Montreal, QC H4A 2N6</span>
       <span class="address-hint">Tap for directions</span>
