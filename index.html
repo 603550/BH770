@@ -1,3 +1,4 @@
+<!--- Main Landing Page: index.html --->
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -24,6 +25,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap" rel="stylesheet">
 
     <style>
+        html {
+            overflow-anchor: none;
+            background-color: #DFDDDB;
+        }
+
         body {
             background-color: #DFDDDB;
             margin: 0;
@@ -48,7 +54,7 @@
             width: 80%;
             max-width: 1000px;
             height: auto;
-            aspect-ratio: 1148 / 1370; /* Reserves intrinsic proportions to stop layout shift */
+            aspect-ratio: 1148 / 1370;
             margin: 0 auto;
             border-radius: 0px;
             display: inline-block;
@@ -112,18 +118,5 @@
             WhatsApp
         </a>
     </div>
-
-    <script>
-        // Forces page to stay fixed at top on load
-        if ('scrollRestoration' in history) {
-            history.scrollRestoration = 'manual';
-        }
-        function forceTop() {
-            window.scrollTo(0, 0);
-        }
-        forceTop();
-        window.addEventListener('load', forceTop);
-        document.addEventListener('DOMContentLoaded', forceTop);
-    </script>
 </body>
 </html>
