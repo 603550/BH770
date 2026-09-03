@@ -308,6 +308,82 @@
         transform: scale(0.985);
       }
     }
+    /* Delivery method popup */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 50;
+    }
+
+    .modal-overlay[hidden] {
+      display: none;
+    }
+
+    .modal {
+      width: min(100%, 340px);
+      background: #fff;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal h2 {
+      margin: 0 0 16px 0;
+      font-size: 20px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .modal-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .modal-option:active {
+      background: #f2f2ef;
+    }
+
+    .option-label small {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    .option-price {
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .modal-close {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: 0;
+      background: transparent;
+      color: #666;
+      cursor: pointer;
+      font-size: 15px;
+    }
   </style>
 </head>
 
@@ -327,10 +403,9 @@
     </div>
 
     <p class="breakdown-text" id="subtotalText">Subtotal: CA$36.00</p>
-    <p class="breakdown-text">Shipping: CA$13.00</p>
     
     <p class="total-label">TOTAL</p>
-    <a class="total-amount" id="totalAmount" href="#" aria-label="Checkout total">CA$49.00</a>
+    <span class="total-amount" id="totalAmount">CA$36.00</span>
     
     <a class="checkout" id="checkout" href="#">Checkout</a>
 
@@ -378,10 +453,25 @@
     </div>
   </main>
 
+  <div class="modal-overlay" id="shippingModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="shippingTitle">
+      <h2 id="shippingTitle">Delivery method</h2>
+      <button type="button" class="modal-option" id="shipOption">
+        <span class="option-label">Xpresspost Shipping<small>+CA$14.00</small></span>
+        <span class="option-price" id="shipTotal">CA$50.00</span>
+      </button>
+      <button type="button" class="modal-option" id="pickupOption">
+        <span class="option-label">Pickup at Chabad NDG<small>Free</small></span>
+        <span class="option-price" id="pickupTotal">CA$36.00</span>
+      </button>
+      <button type="button" class="modal-close" id="modalClose">Cancel</button>
+    </div>
+  </div>
+
   <script>
     // Rotating Image Slideshow Logic
     const mainImg = document.getElementById("mainImage");
-    const slides = ["BH04.png",  "BH01.png", "BH00.png", "BH02.png", "BH03.png"];
+    const slides = ["BH04.png", "BH01.png", "BH00.png", "BH02.png", "BH03.png"];
     let slideIdx = 0;
 
     if (mainImg) {
@@ -397,15 +487,23 @@
 
     // Dynamic Price & Stripe Logic
     const UNIT_PRICE_CENTS = 3600;
-    const SHIPPING_CENTS = 1300; 
-    const STRIPE_PAYMENT_LINK = "https://donate.stripe.com/5kQaEQ6Yy9SI8BFfbj3VC01";
+    const SHIPPING_CENTS = 1400; 
+    const SHIP_PAYMENT_LINK = "https://buy.stripe.com/5kQaEQ6Yy9SI8BFfbj3VC01";
+    const PICKUP_PAYMENT_LINK = "https://buy.stripe.com/6oU4gs3Mm7KA19d9QZ3VC02";
 
     const quantityOutput = document.querySelector("#quantity");
     const decreaseButton = document.querySelector("#decrease");
     const increaseButton = document.querySelector("#increase");
     const subtotalText = document.querySelector("#subtotalText");
-    const totalAmountLink = document.querySelector("#totalAmount");
+    const totalAmount = document.querySelector("#totalAmount");
     const checkoutLink = document.querySelector("#checkout");
+
+    const shippingModal = document.querySelector("#shippingModal");
+    const shipOption = document.querySelector("#shipOption");
+    const pickupOption = document.querySelector("#pickupOption");
+    const shipTotal = document.querySelector("#shipTotal");
+    const pickupTotal = document.querySelector("#pickupTotal");
+    const modalClose = document.querySelector("#modalClose");
 
     let quantity = 1;
 
@@ -418,29 +516,23 @@
       }).format(cents / 100);
     }
 
-    function stripeUrl(totalCents) {
-      const url = new URL(STRIPE_PAYMENT_LINK);
+    function stripeUrl(link, totalCents) {
+      const url = new URL(link);
       url.searchParams.set("__prefilled_amount", String(totalCents));
       return url.toString();
     }
 
     function render() {
-      const subtotalCents = UNIT_PRICE_CENTS * quantity;
-      const totalCents = subtotalCents + SHIPPING_CENTS;
-      
-      const formattedSubtotal = formatMoney(subtotalCents);
-      const formattedTotal = formatMoney(totalCents);
-      const paymentUrl = stripeUrl(totalCents);
+      const base = subtotalCents();
+      const formattedSubtotal = formatMoney(base);
 
       quantityOutput.value = quantity;
       quantityOutput.textContent = quantity;
-      
+
       subtotalText.textContent = `Subtotal: ${formattedSubtotal}`;
-      
-      totalAmountLink.textContent = formattedTotal;
-      totalAmountLink.href = paymentUrl;
-      totalAmountLink.setAttribute("aria-label", `Checkout total: ${formattedTotal}`);
-      checkoutLink.href = paymentUrl;
+      totalAmount.textContent = formattedSubtotal;
+      shipTotal.textContent = formatMoney(base + SHIPPING_CENTS);
+      pickupTotal.textContent = formattedSubtotal;
 
       decreaseButton.disabled = quantity === 1;
     }
@@ -453,6 +545,30 @@
     increaseButton.addEventListener("click", () => {
       quantity += 1;
       render();
+    });
+
+    checkoutLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      render();
+      shippingModal.hidden = false;
+    });
+
+    shipOption.addEventListener("click", () => {
+      window.location.href = stripeUrl(SHIP_PAYMENT_LINK, subtotalCents() + SHIPPING_CENTS);
+    });
+
+    pickupOption.addEventListener("click", () => {
+      window.location.href = stripeUrl(PICKUP_PAYMENT_LINK, subtotalCents());
+    });
+
+    modalClose.addEventListener("click", () => {
+      shippingModal.hidden = true;
+    });
+
+    shippingModal.addEventListener("click", (event) => {
+      if (event.target === shippingModal) {
+        shippingModal.hidden = true;
+      }
     });
 
     render();
